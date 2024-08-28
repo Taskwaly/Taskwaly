@@ -1,0 +1,38 @@
+document.getElementById('login-form')?.addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Show payment screen
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('payment-screen').style.display = 'block';
+});
+
+document.getElementById('payment-form')?.addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Show terms screen
+    document.getElementById('payment-screen').style.display = 'none';
+    document.getElementById('terms-screen').style.display = 'block';
+});
+
+document.getElementById('accept-terms')?.addEventListener('click', function() {
+    // Show task selection screen
+    document.getElementById('terms-screen').style.display = 'none';
+    document.getElementById('task-screen').style.display = 'block';
+});
+
+document.getElementById('task-form')?.addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Show dashboard screen
+    document.getElementById('task-screen').style.display = 'none';
+    document.getElementById('dashboard-screen').style.display = 'block';
+});
+
+document.getElementById('withdraw')?.addEventListener('click', function() {
+    // Show withdraw screen
+    document.getElementById('dashboard-screen').style.display = 'none';
+    document.getElementById('withdraw-screen').style.display = 'block';
+});
+
+document.getElementById('invite')?.addEventListener('click', function() {
+    // Generate and display invite link
+    const inviteLink = 'http://example.com/invite?user=' + encodeURIComponent('username');
+    document.getElementById('invite-link').textContent = inviteLink;
+});
