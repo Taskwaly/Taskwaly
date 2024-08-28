@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Page Single Screen</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen">
+        <h1>Login</h1>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Log In</button>
+        </form>
+    </div>
+
+    <!-- Payment Screen -->
+    <div id="payment-screen" class="screen" style="display:none;">
+        <h1>Payment Details</h1>
+        <form id="payment-form">
+            <label for="payment-number">Payment Number:</label>
+            <input type="text" id="payment-number" value="03112976934" readonly>
+            <button type="submit">Submit Payment</button>
+        </form>
+    </div>
+
+    <!-- Terms and Conditions Screen -->
+    <div id="terms-screen" class="screen" style="display:none;">
+        <h1>Terms and Conditions</h1>
+        <p>Here are the terms and conditions...</p>
+        <button id="accept-terms">Accept</button>
+    </div>
+
+    <!-- Task Selection Screen -->
+    <div id="task-screen" class="screen" style="display:none;">
+        <h1>Select a Task</h1>
+        <form id="task-form">
+            <input type="radio" id="tiktok" name="task" value="TikTok">
+            <label for="tiktok">TikTok</label><br>
+            <input type="radio" id="assignment" name="task" value="Assignment">
+            <label for="assignment">Assignment</label><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboard-screen" class="screen" style="display:none;">
+        <div class="top-bar">
+            <button id="withdraw">Withdraw</button>
+            <button id="invite">Invite</button>
+        </div>
+        <div class="content">
+            <p>Your Earnings: <span id="earnings">0</span> PKR</p>
+            <p>Invite Link: <span id="invite-link"></span></p>
+            <p>Contact: 03181077151</p>
+        </div>
+    </div>
+
+    <!-- Withdraw Screen -->
+    <div id="withdraw-screen" class="screen" style="display:none;">
+        <h1>Withdraw</h1>
+        <form id="withdraw-form">
+            <label for="withdraw-number">Enter Number:</label>
+            <input type="text" id="withdraw-number" required>
+            <label for="payment-method">Select Payment Method:</label>
+            <select id="payment-method">
+                <option value="cash">Cash</option>
+                <option value="easypaisa">EasyPaisa</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
