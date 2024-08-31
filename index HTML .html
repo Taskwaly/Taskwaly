@@ -1,0 +1,300 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Task Wallet</title>
+    <link rel="stylesheet" type="text/css" href="style.css"> <!-- Link to CSS file -->
+</head>
+<body>
+    <!-- Welcome Header -->
+    <div class="header">
+        <h1>Welcome to Task Wallet</h1>
+    </div>
+
+    <!-- Signup Page -->
+    <div class="container" id="signupPage">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <input type="text" id="newUsername" placeholder="Username" required>
+            <input type="password" id="newPassword" placeholder="Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <!-- Login Page -->
+    <div class="container" id="loginPage" style="display:none;">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Payment Page -->
+    <div class="container" id="paymentPage" style="display:none;">
+        <h2>Make Payment</h2>
+        <form id="paymentForm">
+            <select id="paymentMethod">
+                <option value="jazzcash">JazzCash</option>
+                <option value="easypaisa">EasyPaisa</option>
+            </select>
+            <input type="text" id="trxID" placeholder="Transaction ID (TRX ID)" required>
+            <button type="submit">Submit Payment</button>
+        </form>
+    </div>
+
+    <!-- Task Selection Page -->
+    <div class="container" id="taskPage" style="display:none;">
+        <h2>Select Task</h2>
+        <button onclick="selectTask('TikTok Task')">TikTok Task</button>
+        <button onclick="selectTask('Assignment Task')">Assignment Task</button>
+    </div>
+
+    <!-- Invite and Communication Page -->
+    <div class="container" id="invitePage" style="display:none;">
+        <h2>Invite Friends</h2>
+        <button onclick="generateInviteLink()">Generate Invite Link</button>
+        <p id="inviteLink" style="display:none;"></p>
+
+        <h2>Chat</h2>
+        <textarea id="chatMessage" placeholder="Write a message..."></textarea>
+        <button onclick="sendMessage()">Send Message</button>
+    </div>
+
+    <!-- Withdrawal Page -->
+    <div class="container" id="withdrawalPage" style="display:none;">
+        <h2>Request Withdrawal</h2>
+        <form id="withdrawalForm">
+            <input type="text" id="withdrawPhone" placeholder="Phone Number" required>
+            <input type="text" id="withdrawAccount" placeholder="Account Number" required>
+            <input type="text" id="withdrawName" placeholder="Account Holder Name" required>
+            <button type="submit">Withdraw</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script> <!-- Link to JavaScript file -->
+</body>
+</html>
+document.getElementById("signupForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    document.getElementById("signupPage").style.display = "none";
+    document.getElementById("loginPage").style.display = "block";
+});
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("paymentPage").style.display = "block";
+});
+
+document.getElementById("paymentForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    alert("Payment submitted! Approval needed.");
+    sendWhatsappMessage("New payment request. TRX ID: " + document.getElementById("trxID").value);
+    // Simulate admin approval
+    setTimeout(function() {
+        let approved = confirm("Admin, approve this payment?");
+        if (approved) {
+            document.getElementById("paymentPage").style.display = "none";
+            document.getElementById("taskPage").style.display = "block";
+        } else {
+            alert("Payment denied.");
+            location.reload(); // Reload the page
+        }
+    }, 3000);
+});
+
+function sendWhatsappMessage(message) {
+    let whatsappNumber = "03181077151";
+    let whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappLink, "_blank");
+}
+
+function selectTask(taskName) {
+    alert(taskName + " selected!");
+    document.getElementById("taskPage").style.display = "none";
+    document.getElementById("invitePage").style.display = "block";
+}
+
+function generateInviteLink() {
+    let inviteLink = "https://example.com/invite?user=123";
+    document.getElementById("inviteLink").textContent = inviteLink;
+    document.getElementById("inviteLink").style.display = "block";
+}
+
+function sendMessage() {
+    let message = document.getElementById("chatMessage").value;
+    if (message.trim() !== "") {
+        alert("Message sent!");
+        sendWhatsappMessage(message); // Send message to WhatsApp
+    } else {
+        alert("Please write a message.");
+    }
+}
+document.getElementById("signupForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    document.getElementById("signupPage").style.display = "none";
+    document.getElementById("loginPage").style.display = "block";
+});
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("paymentPage").style.display = "block";
+});
+
+document.getElementById("paymentForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    alert("Payment submitted! Approval needed.");
+    sendWhatsappMessage("New payment request. TRX ID: " + document.getElementById("trxID").value);
+    // Simulate admin approval
+    setTimeout(function() {
+        let approved = confirm("Admin, approve this payment?");
+        if (approved) {
+            document.getElementById("paymentPage").style.display = "none";
+            document.getElementById("taskPage").style.display = "block";
+        } else {
+            alert("Payment denied.");
+            location.reload(); // Reload the page
+        }
+    }, 3000);
+});
+
+function sendWhatsappMessage(message) {
+    let whatsappNumber = "03181077151";
+    let whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappLink, "_blank");
+}
+
+function selectTask(taskName) {
+    alert(taskName + " selected!");
+    document.getElementById("taskPage").style.display = "none";
+    document.getElementById("invitePage").style.display = "block";
+}
+
+function generateInviteLink() {
+    let inviteLink = "https://example.com/invite?user=123";
+    document.getElementById("inviteLink").textContent = inviteLink;
+    document.getElementById("inviteLink").style.display = "block";
+}
+
+function sendMessage() {
+    let message = document.getElementById("chatMessage").value;
+    if (message.trim() !== "") {
+        alert("Message sent!");
+        sendWhatsappMessage(message); // Send message to WhatsApp
+    } else {
+        alert("Please write a message.");
+    }
+}
+<style>body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* Light blue background for a calm look */
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #4CAF50; /* Green header */
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background for content boxes */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #4CAF50; /* Green color for headings */
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+</style><script>document.getElementById("signupForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    document.getElementById("signupPage").style.display = "none";
+    document.getElementById("loginPage").style.display = "block";
+});
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("paymentPage").style.display = "block";
+});
+
+document.getElementById("paymentForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    alert("Payment submitted! Approval needed.");
+    sendWhatsappMessage("New payment request. TRX ID: " + document.getElementById("trxID").value);
+    // Simulate admin approval
+    setTimeout(function() {
+        let approved = confirm("Admin, approve this payment?");
+        if (approved) {
+            document.getElementById("paymentPage").style.display = "none";
+            document.getElementById("taskPage").style.display = "block";
+        } else {
+            alert("Payment denied.");
+            location.reload(); // Reload the page
+        }
+    }, 3000);
+});
+
+function sendWhatsappMessage(message) {
+    let whatsappNumber = "03181077151";
+    let whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappLink, "_blank");
+}
+
+function selectTask(taskName) {
+    alert(taskName + " selected!");
+    document.getElementById("taskPage").style.display = "none";
+    document.getElementById("invitePage").style.display = "block";
+}
+
+function generateInviteLink() {
+    let inviteLink = "https://example.com/invite?user=123";
+    document.getElementById("inviteLink").textContent = inviteLink;
+    document.getElementById("inviteLink").style.display = "block";
+}
+
+function sendMessage() {
+    let message = document.getElementById("chatMessage").value;
+    if (message.trim() !== "") {
+        alert("Message sent!");
+        sendWhatsappMessage(message); // Send message to WhatsApp
+    } else {
+        alert("Please write a message.");
+    }
+}
+</script>
